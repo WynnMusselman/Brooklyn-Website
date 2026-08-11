@@ -1,8 +1,10 @@
+/* universal selector - dont change */
 *{
     margin: 0;
     box-sizing: border-box;
 }
 
+/* title styling */
 h1{
     color: red;
 }
