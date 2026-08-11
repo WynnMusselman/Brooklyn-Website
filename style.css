@@ -8,3 +8,14 @@
 h1{
     color: red;
 }
+
+/* image styling */
+img{
+
+}
+
+#wynn-img{
+    max-width: 20vw;
+    border: 5px red dotted;
+}
+
