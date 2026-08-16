@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confetti on Click Button</title>
+    <style>
+        /*
+         Component: Confetti on Click Button
+         Description: A button that triggers a confetti animation.
+        */
+        :root {
+            --confetti-btn-bg: #9933ff; /* A festive purple */
+            --confetti-btn-text-color: #ffffff;
+            --confetti-btn-bg-hover: #8000ff;
+            --confetti-btn-focus-outline: #9933ff;
+        }
+        
+       .confetti-container-1 {
+    			position: absolute;
+   			 top: 50%;
+   			 left: 50%;
+    			transform: translate(-50%, -50%);
+    			z-index: 10;
+
+
+}
+
+        .confetti-btn-1 {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            
+            color: var(--confetti-btn-text-color);
+            background-color: var(--confetti-btn-bg);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(153, 51, 255, 0.3);
+            transition: all 0.2s ease-in-out;
+
+		  width: 150px;
+  		height: 100px;
+  		object-fit: cover;
+  		object-position: 500px 500px;
+`			
+        }
+        
+        .confetti-btn-1:hover {
+            background-color: var(--confetti-btn-bg-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(153, 51, 255, 0.4);
+        }
+        
+        .confetti-btn-1:focus-visible {
+            outline: 3px solid var(--confetti-btn-focus-outline);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <!-- Include the canvas-confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <div class="confetti-container-1">
+        <button type="button" class="confetti-btn-1" id="confettiBtn1">
+	
+	please press for fun
+
+		</button>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const confettiButton = document.getElementById('confettiBtn1');
+
+            confettiButton.addEventListener('click', () => {
+                // Do the actual work (e.g. submit form, save data) here first
+                // ...
+                
+                // Then, trigger the celebration!
+                const celebration = () => {
+                    const duration = 1000;
+                    const animationEnd = Date.now() + duration;
+                    const defaults = { startVelocity: 30, spread: 260, ticks: 60, zIndex: 0 };
+
+                    function randomInRange(min, max) {
+                        return Math.random() * (max - min) + min;
+                    }
+
+                    const interval = setInterval(function() {
+                        const timeLeft = animationEnd - Date.now();
+
+                        if (timeLeft <= 0) {
+                            return clearInterval(interval);
+                        }
+
+                        const particleCount = 50 * (timeLeft / duration);
+                        // since particles fall down, start a bit higher than random
+                        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                    }, 250);
+                };
+
+                celebration();
+            });
+        });
+    </script>
+
+
+
+  <title>Snowfall</title>
+
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(#C4E68C, #42C944, #12614E);
+    }
+
+    .snowflake {
+      --size: 5px;
+
+      width: var(--size);
+      height: var(--size);
+	opacity: 0.5;
+
+      background: #FFFFCF;
+      border-radius: 50%;
+
+      position: absolute;
+      top: -5vh;
+
+      left: var(--left-start);
+
+      animation:
+        snowfall var(--duration) linear infinite;
+
+      animation-delay: var(--delay);
+    }
+
+    @keyframes snowfall {
+      0% {
+        transform: translate3d(var(--left-ini), 0, 0);
+      }
+
+      100% {
+        transform: translate3d(var(--left-end), 110vh, 0);
+      }
+    }
+
+    .snowflake:nth-child(6n) {
+      filter: blur(1px);
+    }
+
+   
+  </style>
+
+</head>
+
+
+
+
+<body>
+
+
+
+  
+
+
+<div id="snow"></div>
+
+  <script>
+    const snowContainer = document.getElementById("snow");
+
+    for (let i = 0; i < 20; i++) {
+      const snowflake = document.createElement("div");
+
+      snowflake.classList.add("snowflake");
+
+      const size = (Math.random() * 0.8 + 0.2) + "vw";
+      const leftStart = Math.random() * 100 + "vw";
+      const leftIni = (Math.random() * 20 - 10) + "vw";
+      const leftEnd = (Math.random() * 20 - 10) + "vw";
+      const duration = (5 + Math.random() * 10) + "s";
+      const delay = -(Math.random() * 10) + "s";
+
+      snowflake.style.setProperty("--size", size);
+      snowflake.style.setProperty("--left-start", leftStart);
+      snowflake.style.setProperty("--left-ini", leftIni);
+      snowflake.style.setProperty("--left-end", leftEnd);
+      snowflake.style.setProperty("--duration", duration);
+      snowflake.style.setProperty("--delay", delay);
+
+	const opacity = Math.random() * 0.6 + 0.1;
+	snowflake.style.opacity = opacity;
+
+	
+
+      snowContainer.appendChild(snowflake);
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
