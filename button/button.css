@@ -1,0 +1,99 @@
+/*
+         Component: Confetti on Click Button
+         Description: A button that triggers a confetti animation.
+        */
+        :root {
+            --confetti-btn-bg: #9933ff; /* A festive purple */
+            --confetti-btn-text-color: #ffffff;
+            --confetti-btn-bg-hover: #8000ff;
+            --confetti-btn-focus-outline: #9933ff;
+        }
+        
+       .confetti-container-1 {
+    			position: absolute;
+   			 top: 50%;
+   			 left: 50%;
+    			transform: translate(-50%, -50%);
+    			z-index: 10;
+
+
+}
+
+        .confetti-btn-1 {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            
+            color: var(--confetti-btn-text-color);
+            background-color: var(--confetti-btn-bg);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(153, 51, 255, 0.3);
+            transition: all 0.2s ease-in-out;
+
+		  width: 150px;
+  		height: 100px;
+  		object-fit: cover;
+  		object-position: 500px 500px;
+`			
+        }
+        
+        .confetti-btn-1:hover {
+            background-color: var(--confetti-btn-bg-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(153, 51, 255, 0.4);
+        }
+        
+        .confetti-btn-1:focus-visible {
+            outline: 3px solid var(--confetti-btn-focus-outline);
+            outline-offset: 3px;
+        }
+
+
+html, body {
+      padding: 0;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(#C4E68C, #42C944, #12614E);
+    }
+
+    .snowflake {
+      --size: 5px;
+
+      width: var(--size);
+      height: var(--size);
+	opacity: 0.5;
+
+      background: #FFFFCF;
+      border-radius: 50%;
+
+      position: absolute;
+      top: -5vh;
+
+      left: var(--left-start);
+
+      animation:
+        snowfall var(--duration) linear infinite;
+
+      animation-delay: var(--delay);
+    }
+
+    @keyframes snowfall {
+      0% {
+        transform: translate3d(var(--left-ini), 0, 0);
+      }
+
+      100% {
+        transform: translate3d(var(--left-end), 110vh, 0);
+      }
+    }
+
+    .snowflake:nth-child(6n) {
+      filter: blur(1px);
+    }
