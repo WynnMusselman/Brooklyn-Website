@@ -74,7 +74,7 @@
     <div class="confetti-container-1">
         <button type="button" class="confetti-btn-1" id="confettiBtn1">
 	
-	please press for fun!
+	please press for fun!!
 
 		</button>
 
@@ -213,6 +213,95 @@
 
       snowContainer.appendChild(snowflake);
     }
+
+
+
+
+
+  //---YARN WAVE!---
+
+  // Parameters for the wave
+let amplitude = 70;  // Height of the wave
+let frequency = 0.02; // Number of waves per pixel
+let speed = 0.02;     // How fast the wave moves
+
+let currColor = "#89b8f5";
+let targetColor = "#89b8f5";
+
+// gradual change
+let targetAmplitude = amplitude;
+let targetFrequency = frequency;
+let targetSpeed = speed;
+
+let currEmotion = "neutral";
+
+const canvas = document.getElementById("sineCanvas");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+let time = 0;
+
+// drawns the wave
+function drawSineWave() {
+    const width = canvas.width;
+    const height = canvas.height;
+
+    ctx.clearRect(0, 0, width, height);
+
+    //gradually transistion to new emotion
+    const lerpFactor = 0.03; // smaller = slower transition
+    amplitude += (targetAmplitude - amplitude) * lerpFactor;
+    frequency += (targetFrequency - frequency) * lerpFactor;
+    speed += (targetSpeed - speed) * lerpFactor;
+    currColor = targetColor;
+
+    //changes the vertical location of the wave on the page
+    let verticalShift = (height / 2.5) + (20 * Math.sin(time * 0.5));
+
+    
+    ctx.beginPath();
+
+    ctx.stroke();
+
+    ctx.moveTo(0, verticalShift);
+
+    for (let x = 0; x < width; x++) {
+          const y = verticalShift + amplitude * Math.sin(x * frequency + time * 2);
+          ctx.lineTo(x, y);
+        }
+
+    // Gradient for prettier waves
+    const gradient = ctx.createLinearGradient(0, 0, width, 0);
+    gradient.addColorStop(0, currColor);
+    gradient.addColorStop(1, currColor);
+
+    //shadow and blur to add yarn effect
+    ctx.shadowColor = "rgba(0,0,0,0.15)";
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetY = 4;
+
+    // color and width of line
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 20;
+    
+        
+    ctx.stroke();
+ 
+
+    time += speed; // Animate the wave
+      
+    requestAnimationFrame(drawSineWave);
+} 
+//end sine wave function
+drawSineWave(); //call function
+    
   </script>
 
 
